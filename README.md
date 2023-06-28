@@ -1,8 +1,6 @@
 Solutions for https://ocaml.org/problems.
 
-
-**Run**
-
+Run tests for all the solutions:
 ```shell
-ocamlopt p01.ml && ./a.out
+bash run.sh
 ```
