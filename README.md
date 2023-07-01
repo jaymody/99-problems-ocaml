@@ -1,6 +1,14 @@
 Solutions for https://ocaml.org/problems.
 
-Run tests for all the solutions:
+I used the [Real World OCaml](https://dev.realworldocaml.org/index.html) book to learn OCaml and get my OCaml dev environment up and running.
+
+**Dependencies**
 ```shell
-bash run.sh
+opam install core core_bench utop ocamlformat ocaml-lsp-server
+```
+
+**Build and Run**
+```shell
+dune build
+./_build/default/src/p01.exe  # replace with whatever problem set you wanna run
 ```
