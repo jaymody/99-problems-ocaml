@@ -14,6 +14,11 @@ let pack list =
   List.rev (outer list [])
 ;;
 
+assert (pack [] = []);;
+assert (pack [ "a" ] = [ [ "a" ] ]);;
+assert (pack [ "a"; "a" ] = [ [ "a"; "a" ] ]);;
+assert (pack [ "a"; "b"; "c"; "a" ] = [ [ "a" ]; [ "b" ]; [ "c" ]; [ "a" ] ]);;
+
 assert (
   pack
     [
