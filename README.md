@@ -1,14 +1,12 @@
-Solutions for https://ocaml.org/problems.
+Solutions for [ocaml.org/problems](https://ocaml.org/problems).
 
-I used the [Real World OCaml](https://dev.realworldocaml.org/index.html) book to learn OCaml and get my OCaml dev environment up and running.
+Requires `OCaml >= 4.14.0`.
 
-**Dependencies**
-```shell
-opam install core core_bench utop ocamlformat ocaml-lsp-server
 ```
-
-**Build and Run**
-```shell
 dune build
 ./_build/default/src/p01.exe  # replace with whatever problem set you wanna run
 ```
+
+Resources:
+- [Real World OCaml](https://dev.realworldocaml.org/index.html)
+- [Official OCaml Docs](https://v2.ocaml.org/manual/index.html)
