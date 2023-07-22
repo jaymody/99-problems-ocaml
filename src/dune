@@ -26,7 +26,8 @@
   p24
   p25
   p26
-  p27)
+  p27
+  p28)
  (libraries base core stdio)
  (preprocess
   (pps ppx_jane)))
