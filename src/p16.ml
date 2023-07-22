@@ -1,10 +1,9 @@
-let drop l n =
-  let rec fn l i o =
-    match l with
-    | h :: t -> fn t (i + 1) (if i mod n = 0 then o else h :: o)
-    | _ -> o
+let drop list n =
+  let rec aux i acc = function
+    | [] -> acc
+    | h :: t -> if i = n then aux 1 acc t else aux (i + 1) (h :: acc) t
   in
-  List.rev (fn l 1 [])
+  List.rev (aux 1 [] list)
 ;;
 
 assert (drop [] 3 = []);;

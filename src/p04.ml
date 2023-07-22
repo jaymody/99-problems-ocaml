@@ -1,6 +1,6 @@
 let length =
-  let rec fn i = function [] -> i | _ :: t -> fn (i + 1) t in
-  fn 0
+  let rec aux n = function [] -> n | _ :: t -> aux (n + 1) t in
+  aux 0
 ;;
 
 assert (length [] = 0);;

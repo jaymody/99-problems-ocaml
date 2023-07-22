@@ -1,13 +1,15 @@
 type 'a rle = One of 'a | Many of (int * 'a)
 
-let decode l =
-  let rec fn l o =
-    match l with
-    | Many (n, x) :: rest -> fn rest (List.init n (fun _ -> x) @ o)
-    | One x :: rest -> fn rest (x :: o)
-    | [] -> o
+let decode list =
+  let rec add x n acc = if n = 0 then acc else add x (n - 1) (x :: acc) in
+  let rec aux acc = function
+    | [] -> acc
+    | h :: t -> (
+        match h with
+        | Many (n, x) -> aux (add x n acc) t
+        | One x -> aux (x :: acc) t)
   in
-  List.rev (fn l [])
+  List.rev (aux [] list)
 ;;
 
 assert (

@@ -1,8 +1,9 @@
-let range i j =
-  let rec fn n acc =
-    if n >= 0 then fn (n - 1) ((if j > i then i + n else i - n) :: acc) else acc
+let range l r =
+  let rec aux i j acc =
+    if i != j then aux i (if j > i then j - 1 else j + 1) (j :: acc)
+    else j :: acc
   in
-  fn (abs (j - i)) []
+  aux l r []
 ;;
 
 assert (range 4 4 = [ 4 ]);;

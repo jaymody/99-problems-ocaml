@@ -1,11 +1,10 @@
-let split l n =
-  let rec fn l r n =
-    match r with
-    | h :: t -> if n = 0 then (l, r) else fn (h :: l) t (n - 1)
-    | _ -> (l, r)
+let split list n =
+  let rec aux i left = function
+    | [] -> (left, [])
+    | h :: t -> if i = n then (left, h :: t) else aux (i + 1) (h :: left) t
   in
-  let l, r = fn [] l n in
-  (List.rev l, r)
+  let left, right = aux 0 [] list in
+  (List.rev left, right)
 ;;
 
 assert (split [] 0 = ([], []));;

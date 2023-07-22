@@ -1,8 +1,8 @@
 open P17
 
-let rotate l n =
-  let l, r = split l n in
-  r @ l
+let rotate list n =
+  let left, right = split list n in
+  right @ left
 ;;
 
 assert (rotate [] 3 = []);;

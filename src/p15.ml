@@ -1,8 +1,13 @@
-let replicate l n =
-  let rec dup a n o = if n = 0 then o else dup a (n - 1) (a :: o) in
-  let rec fn l o = match l with h :: t -> fn t (dup h n o) | _ -> o in
-  fn (List.rev l) []
+let replicate list n =
+  let rec add x i acc = if i = 0 then acc else add x (i - 1) (x :: acc) in
+  let rec aux acc = function [] -> acc | h :: t -> aux (add h n acc) t in
+  List.rev (aux [] list)
 ;;
+
+assert (replicate [] 3 = []);;
+assert (replicate [ "a" ] 1 = [ "a" ]);;
+assert (replicate [ "a" ] 4 = [ "a"; "a"; "a"; "a" ]);;
+assert (replicate [ "a"; "a" ] 2 = [ "a"; "a"; "a"; "a" ]);;
 
 assert (
   replicate [ "a"; "b"; "c" ] 3

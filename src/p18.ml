@@ -1,10 +1,11 @@
-let slice l i j =
-  let rec fn l i j o =
-    match l with
-    | h :: t -> fn t (i - 1) (j - 1) (if i > 0 || j < 0 then o else h :: o)
-    | _ -> o
+let slice list l r =
+  let rec aux i j acc = function
+    | [] -> acc
+    | h :: t ->
+        if j < 0 then acc
+        else aux (i - 1) (j - 1) (if i > 0 then acc else h :: acc) t
   in
-  List.rev (fn l i j [])
+  List.rev (aux l r [] list)
 ;;
 
 assert (slice [] 1 4 = []);;

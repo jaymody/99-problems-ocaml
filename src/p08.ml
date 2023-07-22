@@ -1,13 +1,10 @@
-let head = function x :: _ -> Some x | [] -> None
-
 let compress list =
-  let rec fn old_list new_list =
-    match (old_list, new_list) with
-    | h :: t, _ ->
-        fn t (if Some h = head new_list then new_list else h :: new_list)
-    | _ -> new_list
+  let rec aux acc = function
+    | x :: y :: t -> aux (if x = y then acc else x :: acc) (y :: t)
+    | x :: _ -> x :: acc
+    | _ -> acc
   in
-  List.rev (fn list [])
+  List.rev (aux [] list)
 ;;
 
 assert (compress [] = []);;

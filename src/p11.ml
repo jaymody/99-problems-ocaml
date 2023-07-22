@@ -1,15 +1,14 @@
 type 'a rle = One of 'a | Many of int * 'a
 
-let encode l =
-  let g n a = if n = 1 then One a else Many (n, a) in
-  let rec fn l n o =
-    match l with
-    | a :: (b :: _ as rest) ->
-        if a = b then fn rest (n + 1) o else fn rest 1 (g n a :: o)
-    | [ x ] -> g n x :: o
-    | [] -> o
+let encode list =
+  let create_rle n x = if n = 1 then One x else Many (n, x) in
+  let rec aux n acc = function
+    | x :: (y :: _ as t) ->
+        if x = y then aux (n + 1) acc t else aux 1 (create_rle n x :: acc) t
+    | [ x ] -> create_rle n x :: acc
+    | [] -> acc
   in
-  List.rev (fn l 1 [])
+  List.rev (aux 1 [] list)
 ;;
 
 assert (

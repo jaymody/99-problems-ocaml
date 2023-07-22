@@ -1,17 +1,18 @@
+let collect x =
+  let rec aux acc = function
+    | [] -> (acc, [])
+    | h :: t -> if h = x then aux (h :: acc) t else (acc, h :: t)
+  in
+  aux []
+
 let pack list =
-  let rec inner l acc chr =
-    match (l, acc) with
-    | h :: t, _ -> if h = chr then inner t (h :: acc) chr else (l, acc)
-    | _ -> (l, acc)
+  let rec aux acc = function
+    | [] -> acc
+    | h :: _ as list ->
+        let x, t = collect h list in
+        aux (x :: acc) t
   in
-  let rec outer l acc =
-    match (l, acc) with
-    | h :: t, _ ->
-        let a, b = inner t [ h ] h in
-        outer a (b :: acc)
-    | [], _ -> acc
-  in
-  List.rev (outer list [])
+  List.rev (aux [] list)
 ;;
 
 assert (pack [] = []);;

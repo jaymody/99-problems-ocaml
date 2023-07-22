@@ -1,7 +1,9 @@
 let lotto_select n m =
-  let rec fn i l = if i = 0 then l else fn (i - 1) ((Random.int m + 1) :: l) in
-  fn n []
+  let rec aux n acc =
+    if n = 0 then acc else aux (n - 1) (Random.int (m + 1) :: acc)
+  in
+  aux n []
 ;;
 
 let () = Random.init 100 in
-assert (lotto_select 6 49 = [ 10; 46; 46; 32; 49; 26 ])
+assert (lotto_select 10 5 = [ 4; 0; 5; 1; 2; 4; 3; 3; 1; 2 ])

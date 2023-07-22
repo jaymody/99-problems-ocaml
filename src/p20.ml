@@ -1,8 +1,17 @@
-let remove_at i l =
-  let rec fn i l o =
-    match l with h :: t -> fn (i - 1) t (if i = 0 then o else h :: o) | _ -> o
+(* Tail recursive version *)
+(*
+let remove_at n list =
+  let rec aux i acc = function
+    | [] -> acc
+    | h :: t -> aux (i - 1) (if i = 0 then acc else h :: acc) t
   in
-  List.rev (fn i l [])
+  List.rev (aux n [] list)
+;;
+*)
+
+let rec remove_at n = function
+  | [] -> []
+  | h :: t -> if n = 0 then t else h :: remove_at (n - 1) t
 ;;
 
 assert (remove_at 0 [] = []);;

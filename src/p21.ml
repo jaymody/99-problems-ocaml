@@ -1,7 +1,17 @@
-let rec insert_at a i l =
-  match l with
-  | h :: t -> if i = 0 then a :: l else h :: insert_at a (i - 1) t
-  | [] -> [ a ]
+(* Tail recursive version *)
+(*
+let insert_at x n list =
+  let rec aux i acc = function
+    | [] -> if i >= 0 then x :: acc else acc
+    | h :: t -> aux (i - 1) (if i = 0 then h :: x :: acc else h :: acc) t
+  in
+  List.rev (aux n [] list)
+;;
+*)
+
+let rec insert_at x n = function
+  | [] -> [ x ]
+  | h :: t -> if n = 0 then x :: h :: t else h :: insert_at x (n - 1) t
 ;;
 
 assert (insert_at "a" 0 [] = [ "a" ]);;

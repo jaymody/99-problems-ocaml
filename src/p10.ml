@@ -1,12 +1,11 @@
-let encode l =
-  let rec fn l n o =
-    match l with
-    | a :: b :: c ->
-        if a = b then fn (b :: c) (n + 1) o else fn (b :: c) 1 ((n, a) :: o)
-    | [ x ] -> (n, x) :: o
-    | [] -> o
+let encode list =
+  let rec aux n acc = function
+    | x :: (y :: _ as t) ->
+        if x = y then aux (n + 1) acc t else aux 1 ((n, x) :: acc) t
+    | [ x ] -> (n, x) :: acc
+    | [] -> acc
   in
-  List.rev (fn l 1 [])
+  List.rev (aux 1 [] list)
 ;;
 
 assert (encode [] = []);;

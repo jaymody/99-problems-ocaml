@@ -1,6 +1,6 @@
-let duplicate l =
-  let rec fn l o = match l with h :: t -> fn t (h :: h :: o) | _ -> o in
-  List.rev (fn l [])
+let duplicate list =
+  let rec aux acc = function [] -> acc | h :: t -> aux (h :: h :: acc) t in
+  List.rev (aux [] list)
 ;;
 
 assert (duplicate [] = []);;

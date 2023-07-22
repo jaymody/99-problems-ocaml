@@ -1,15 +1,13 @@
 let combinations n list =
-  let rec aux n list path acc =
-    if n = 0 then path :: acc
-    else if List.length list >= n then
-      match list with
-      | head :: tail ->
-          let acc = aux (n - 1) tail (head :: path) acc in
-          aux n tail path acc
-      | [] -> [ [] ]
-    else acc
+  let rec aux n path acc list =
+    match (n, list) with
+    | 0, _ -> path :: acc
+    | _, [] -> acc
+    | n, h :: t ->
+        let acc = aux (n - 1) (h :: path) acc t in
+        aux n path acc t
   in
-  aux n list [] []
+  aux n [] [] list
 ;;
 
 assert (combinations 0 [ "a"; "b"; "c"; "d" ] = [ [] ]);;
