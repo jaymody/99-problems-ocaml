@@ -1,13 +1,9 @@
-let goldbach n =
-  let primes = P37.all_primes 2 n in
-  let rec aux fwd rev =
-    match (fwd, rev) with
-    | a :: _, c :: _ when a + c = n -> (a, c)
-    | a :: _, c :: t when a + c > n -> aux fwd t
-    | a :: t, c :: _ when a + c < n -> aux t rev
-    | _ -> raise Not_found
-  in
-  aux primes (List.rev primes)
+let timeit f x =
+  let t = Sys.time () in
+  let fx = f x in
+  Printf.printf "%fs\n" (Sys.time () -. t);
+  fx
 ;;
 
-assert (goldbach 28 = (5, 23))
+timeit P34.phi 1209010;;
+timeit P37.phi_improved 1209010

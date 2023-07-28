@@ -1,9 +1,3 @@
-let timeit f x =
-  let t = Sys.time () in
-  let fx = f x in
-  Printf.printf "%fs\n" (Sys.time () -. t);
-  fx
-;;
+let factors n = P35.factors n |> P10.encode |> List.map (fun (a, b) -> (b, a));;
 
-timeit P32.phi 1209010;;
-timeit P35.phi_improved 1209010
+assert (factors 315 = [ (3, 2); (5, 1); (7, 1) ])

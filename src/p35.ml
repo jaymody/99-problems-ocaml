@@ -1,63 +1,27 @@
-(* Damn OCaml really doesn't have an integer power function eh? *)
-let rec pow b n = if n < 1 then 1 else b * pow b (n - 1)
+(*
+Explanation of the algorithm:
 
-let phi_improved n =
-  P34.factors n
-  |> List.fold_left (fun prod (p, m) -> prod * ((p - 1) * pow p (m - 1))) 1
+1) Starting from d=2 and we check if n is divisible by d
+2) If it is, we add d to the result and we recurse with d=d and n=n/d, that is
+   we've found a prime divisor so we can "remove" it from n by dividing it away,
+   so the problem is reduced to finding prime factors of n / d. Because we
+   recurse with d=d, this means we will always find the factors in ascending
+   order and thus we need not reset d=2.
+3) But how do we know that d is prime? Consider a non-prime d. A non-prime d
+   would have prime factors that are less than it. If n is divisible by d,
+   then it is also divisible by it's prime factors, which would have been caught
+   earlier in the recursion since the prime factors are less than it. By the
+   time we reach a non-prime d that was a factor of n, those prime factors will
+   have been divided away from n leaving an n that is no longer divisible by
+   that d, whose prime factors will have been added to the answer.
+*)
+let factors n =
+  let rec aux d = function
+    | 1 -> []
+    | n -> if n mod d = 0 then d :: aux d (n / d) else aux (d + 1) n
+  in
+  aux 2 n
 ;;
 
-assert (phi_improved 10 = 4);;
-
-assert (
-  List.init 49 (fun n -> (n + 2, phi_improved (n + 2)))
-  = [
-      (2, 1);
-      (3, 2);
-      (4, 2);
-      (5, 4);
-      (6, 2);
-      (7, 6);
-      (8, 4);
-      (9, 6);
-      (10, 4);
-      (11, 10);
-      (12, 4);
-      (13, 12);
-      (14, 6);
-      (15, 8);
-      (16, 8);
-      (17, 16);
-      (18, 6);
-      (19, 18);
-      (20, 8);
-      (21, 12);
-      (22, 10);
-      (23, 22);
-      (24, 8);
-      (25, 20);
-      (26, 12);
-      (27, 18);
-      (28, 12);
-      (29, 28);
-      (30, 8);
-      (31, 30);
-      (32, 16);
-      (33, 20);
-      (34, 16);
-      (35, 24);
-      (36, 12);
-      (37, 36);
-      (38, 18);
-      (39, 24);
-      (40, 16);
-      (41, 40);
-      (42, 12);
-      (43, 42);
-      (44, 20);
-      (45, 24);
-      (46, 22);
-      (47, 46);
-      (48, 16);
-      (49, 42);
-      (50, 20);
-    ])
+assert (factors 315 = [ 3; 3; 5; 7 ]);;
+assert (factors 1481094 = [ 2; 3; 3; 107; 769 ])

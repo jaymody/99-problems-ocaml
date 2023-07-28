@@ -1,23 +1,46 @@
-let goldbach_list a b =
-  let rec aux n acc =
-    if n > b then acc else aux (n + 2) ((n, P38.goldbach n) :: acc)
+(* Sieve of Eratosthenes *)
+let all_primes a b =
+  let is_prime_arr = Array.init (b + 1) (fun n -> n) in
+  let rec fill_primes m =
+    let rec aux n =
+      if n <= b then (
+        Array.set is_prime_arr n 0;
+        aux (n + m))
+    in
+    if m <= b / 2 then (
+      if Array.get is_prime_arr m <> 0 then aux (2 * m);
+      fill_primes (m + 1))
   in
-  List.rev (aux (if a mod 2 = 0 then a else a + 1) [])
-
-let goldbach_limit a b lim =
-  List.filter (fun (_, (a, b)) -> a > lim && b > lim) (goldbach_list a b)
+  fill_primes 2;
+  is_prime_arr |> Array.to_list |> List.filter (fun n -> n <> 0 && n >= a)
 ;;
 
 assert (
-  goldbach_list 9 20
+  all_primes 2 97
   = [
-      (10, (3, 7));
-      (12, (5, 7));
-      (14, (3, 11));
-      (16, (3, 13));
-      (18, (5, 13));
-      (20, (3, 17));
+      2;
+      3;
+      5;
+      7;
+      11;
+      13;
+      17;
+      19;
+      23;
+      29;
+      31;
+      37;
+      41;
+      43;
+      47;
+      53;
+      59;
+      61;
+      67;
+      71;
+      73;
+      79;
+      83;
+      89;
+      97;
     ])
-;;
-
-Printf.printf "%d\n" (List.length (goldbach_limit 3 3000 50))

@@ -1,62 +1,56 @@
-open P31
+(*
+        Why does euclid's algorithm work?
 
-let phi m =
-  Seq.fold_left ( + ) 0
-    (Seq.init (m - 1) (fun x -> if coprime (x + 1) m then 1 else 0))
-;;
+Firstly, to formalize the problem, given two integers a and b, we are trying
+to find the largest possible d such that:
 
-assert (phi 10 = 4);;
+    a = d * m1
+    b = d * m2
 
-assert (
-  List.init 49 (fun n -> (n + 2, phi (n + 2)))
-  = [
-      (2, 1);
-      (3, 2);
-      (4, 2);
-      (5, 4);
-      (6, 2);
-      (7, 6);
-      (8, 4);
-      (9, 6);
-      (10, 4);
-      (11, 10);
-      (12, 4);
-      (13, 12);
-      (14, 6);
-      (15, 8);
-      (16, 8);
-      (17, 16);
-      (18, 6);
-      (19, 18);
-      (20, 8);
-      (21, 12);
-      (22, 10);
-      (23, 22);
-      (24, 8);
-      (25, 20);
-      (26, 12);
-      (27, 18);
-      (28, 12);
-      (29, 28);
-      (30, 8);
-      (31, 30);
-      (32, 16);
-      (33, 20);
-      (34, 16);
-      (35, 24);
-      (36, 12);
-      (37, 36);
-      (38, 18);
-      (39, 24);
-      (40, 16);
-      (41, 40);
-      (42, 12);
-      (43, 42);
-      (44, 20);
-      (45, 24);
-      (46, 22);
-      (47, 46);
-      (48, 16);
-      (49, 42);
-      (50, 20);
-    ])
+That is, we're trying to find the greatest common factor of a and b.
+
+The division of a by b can be characterized as:
+
+    a = b * q + r
+
+If we substitute in b = d * m2:
+
+    a = d * m2 * q + r
+
+And factor out d:
+
+    a = d * (m2 * q + r / d)
+
+This suggest:
+
+    m1 = m2 * q + r / d
+
+Since m1 needs to be an integer, and m2 * q is an integer, this means that
+r / d must also be an integer. In other words, r must also be divisible by d.
+
+If we assume that b <= a, then d <= b, and thus the problem is reduced to:
+
+    gcd (a, b) = gcd (b, r)
+
+The trivial case is when b = 0, in which case we just return a.
+
+Okay, but the below code doens't assume b <= a? This ends up making no
+difference because if a < b, then r = a and so we get:
+
+    gcd (a, b) = gcd (b, r) = gcd (b, a)
+
+Which get's us back to the case when the first arg is less than the second.
+*)
+
+let rec gcd a b = if b = 0 then a else gcd b (a mod b);;
+
+assert (gcd 42 56 = 14);;
+assert (gcd 461952 116298 = 18);;
+assert (gcd 314080416 7966496 = 32);;
+assert (gcd 24826148 45296490 = 526);;
+assert (gcd 12 0 = 12);;
+assert (gcd 0 12 = 12);;
+assert (gcd 0 0 = 0);;
+assert (gcd 0 9 = 9);;
+assert (gcd 13 27 = 1);;
+assert (gcd 20536 7826 = 2)
