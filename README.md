@@ -2,9 +2,8 @@ Solutions for [ocaml.org/problems](https://ocaml.org/problems).
 
 Requires `OCaml >= 4.14.0`.
 
-```
-dune build
-./_build/default/src/p01.exe  # replace with whatever problem set you wanna run
+```shell
+dune exec src/p01.exe # replace with problem number you want to run
 ```
 
 Resources:
