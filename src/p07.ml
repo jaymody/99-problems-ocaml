@@ -1,4 +1,6 @@
-type 'a node = One of 'a | Many of 'a node list
+type 'a node =
+  | One of 'a
+  | Many of 'a node list
 
 let flatten list =
   let rec aux acc = function

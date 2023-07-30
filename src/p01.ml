@@ -1,4 +1,8 @@
-let rec last = function [] -> None | [ x ] -> Some x | _ :: t -> last t;;
+let rec last = function
+  | [] -> None
+  | [ x ] -> Some x
+  | _ :: t -> last t
+;;
 
 assert (last [] = None);;
 assert (last [ 1 ] = Some 1);;

@@ -1,10 +1,10 @@
 let split list n =
   let rec aux i left = function
-    | [] -> (left, [])
-    | h :: t -> if i = n then (left, h :: t) else aux (i + 1) (h :: left) t
+    | [] -> left, []
+    | h :: t -> if i = n then left, h :: t else aux (i + 1) (h :: left) t
   in
   let left, right = aux 0 [] list in
-  (List.rev left, right)
+  List.rev left, right
 ;;
 
 assert (split [] 0 = ([], []));;

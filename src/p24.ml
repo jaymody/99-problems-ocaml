@@ -1,7 +1,5 @@
 let lotto_select n m =
-  let rec aux n acc =
-    if n = 0 then acc else aux (n - 1) (Random.int (m + 1) :: acc)
-  in
+  let rec aux n acc = if n = 0 then acc else aux (n - 1) (Random.int (m + 1) :: acc) in
   aux n []
 ;;
 

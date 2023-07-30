@@ -1,5 +1,8 @@
 let rev =
-  let rec aux acc = function [] -> acc | h :: t -> aux (h :: acc) t in
+  let rec aux acc = function
+    | [] -> acc
+    | h :: t -> aux (h :: acc) t
+  in
   aux []
 ;;
 

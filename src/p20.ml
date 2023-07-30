@@ -1,12 +1,12 @@
 (* Tail recursive version *)
 (*
-let remove_at n list =
-  let rec aux i acc = function
-    | [] -> acc
-    | h :: t -> aux (i - 1) (if i = 0 then acc else h :: acc) t
-  in
-  List.rev (aux n [] list)
-;;
+   let remove_at n list =
+   let rec aux i acc = function
+   | [] -> acc
+   | h :: t -> aux (i - 1) (if i = 0 then acc else h :: acc) t
+   in
+   List.rev (aux n [] list)
+   ;;
 *)
 
 let rec remove_at n = function

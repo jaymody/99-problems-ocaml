@@ -8,9 +8,7 @@ type bool_expr =
 
 let table vars expr =
   let initial_varmap =
-    List.fold_left
-      (fun map var -> StringMap.add var false map)
-      StringMap.empty vars
+    List.fold_left (fun map var -> StringMap.add var false map) StringMap.empty vars
   in
   let eval varmap =
     let rec aux = function
@@ -25,19 +23,16 @@ let table vars expr =
     match vars with
     | [] -> (List.rev path, eval varmap) :: acc
     | h :: t ->
-        let acc =
-          aux (StringMap.add h false varmap) ((h, false) :: path) acc t
-        in
-        aux (StringMap.add h true varmap) ((h, true) :: path) acc t
+      let acc = aux (StringMap.add h false varmap) ((h, false) :: path) acc t in
+      aux (StringMap.add h true varmap) ((h, true) :: path) acc t
   in
   aux initial_varmap [] [] vars
 ;;
 
 assert (
   table [ "a"; "b" ] (And (Var "a", Or (Var "a", Var "b")))
-  = [
-      ([ ("a", true); ("b", true) ], true);
-      ([ ("a", true); ("b", false) ], true);
-      ([ ("a", false); ("b", true) ], false);
-      ([ ("a", false); ("b", false) ], false);
+  = [ [ "a", true; "b", true ], true
+    ; [ "a", true; "b", false ], true
+    ; [ "a", false; "b", true ], false
+    ; [ "a", false; "b", false ], false
     ])
