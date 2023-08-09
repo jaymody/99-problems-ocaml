@@ -7,16 +7,16 @@ let split list n =
   List.rev left, right
 ;;
 
-assert (split [] 0 = ([], []));;
-assert (split [] 1 = ([], []));;
-assert (split [] 2 = ([], []));;
-assert (split [ "a" ] 0 = ([], [ "a" ]));;
-assert (split [ "a" ] 1 = ([ "a" ], []));;
-assert (split [ "a"; "b"; "c" ] 1 = ([ "a" ], [ "b"; "c" ]));;
+let%test _ = split [] 0 = ([], [])
+let%test _ = split [] 1 = ([], [])
+let%test _ = split [] 2 = ([], [])
+let%test _ = split [ "a" ] 0 = ([], [ "a" ])
+let%test _ = split [ "a" ] 1 = ([ "a" ], [])
+let%test _ = split [ "a"; "b"; "c" ] 1 = ([ "a" ], [ "b"; "c" ])
 
-assert (
+let%test _ =
   split [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 3
-  = ([ "a"; "b"; "c" ], [ "d"; "e"; "f"; "g"; "h"; "i"; "j" ]))
+  = ([ "a"; "b"; "c" ], [ "d"; "e"; "f"; "g"; "h"; "i"; "j" ])
 ;;
 
-assert (split [ "a"; "b"; "c"; "d" ] 5 = ([ "a"; "b"; "c"; "d" ], []))
+let%test _ = split [ "a"; "b"; "c"; "d" ] 5 = ([ "a"; "b"; "c"; "d" ], [])

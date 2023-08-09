@@ -7,24 +7,25 @@ let slice list l r =
   List.rev (aux l r [] list)
 ;;
 
-assert (slice [] 1 4 = []);;
-assert (slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 1 1 = [ "b" ]);;
+let%test _ = slice [] 1 4 = []
+let%test _ = slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 1 1 = [ "b" ]
 
-assert (
+let%test _ =
   slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 0 100
-  = [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ])
+  = [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ]
 ;;
 
-assert (
+let%test _ =
   slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 0 9
-  = [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ])
+  = [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ]
 ;;
 
-assert (
+let%test _ =
   slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 1 8
-  = [ "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i" ])
+  = [ "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i" ]
 ;;
 
-assert (
+let%test _ =
   slice [ "a"; "b"; "c"; "d"; "e"; "f"; "g"; "h"; "i"; "j" ] 2 6
-  = [ "c"; "d"; "e"; "f"; "g" ])
+  = [ "c"; "d"; "e"; "f"; "g" ]
+;;

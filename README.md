@@ -11,6 +11,17 @@ Build project:
 dune build
 ```
 
+Run inline tests:
+```shell
+dune runtest
+```
+
+Usage as library:
+```ocaml
+Problems.P31.is_prime 7;;
+- : bool = true
+```
+
 Resources:
 - [Real World OCaml](https://dev.realworldocaml.org/index.html)
 - [Official OCaml Docs](https://v2.ocaml.org/manual/index.html)

@@ -7,9 +7,9 @@ let goldbach_limit a b lim =
   List.filter (fun (_, (a, b)) -> a > lim && b > lim) (goldbach_list a b)
 ;;
 
-assert (
+let%test _ =
   goldbach_list 9 20
-  = [ 10, (3, 7); 12, (5, 7); 14, (3, 11); 16, (3, 13); 18, (5, 13); 20, (3, 17) ])
+  = [ 10, (3, 7); 12, (5, 7); 14, (3, 11); 16, (3, 13); 18, (5, 13); 20, (3, 17) ]
 ;;
 
-Printf.printf "%d\n" (List.length (goldbach_limit 3 3000 50))
+let%test _ = List.length (goldbach_limit 3 3000 50) = 10

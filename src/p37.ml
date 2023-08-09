@@ -5,9 +5,9 @@ let phi_improved n =
   P36.factors n |> List.fold_left (fun prod (p, m) -> prod * ((p - 1) * pow p (m - 1))) 1
 ;;
 
-assert (phi_improved 10 = 4);;
+let%test _ = phi_improved 10 = 4
 
-assert (
+let%test _ =
   List.init 49 (fun n -> n + 2, phi_improved (n + 2))
   = [ 2, 1
     ; 3, 2
@@ -58,4 +58,5 @@ assert (
     ; 48, 16
     ; 49, 42
     ; 50, 20
-    ])
+    ]
+;;

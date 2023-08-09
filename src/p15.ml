@@ -7,8 +7,11 @@ let replicate list n =
   List.rev (aux [] list)
 ;;
 
-assert (replicate [] 3 = []);;
-assert (replicate [ "a" ] 1 = [ "a" ]);;
-assert (replicate [ "a" ] 4 = [ "a"; "a"; "a"; "a" ]);;
-assert (replicate [ "a"; "a" ] 2 = [ "a"; "a"; "a"; "a" ]);;
-assert (replicate [ "a"; "b"; "c" ] 3 = [ "a"; "a"; "a"; "b"; "b"; "b"; "c"; "c"; "c" ])
+let%test _ = replicate [] 3 = []
+let%test _ = replicate [ "a" ] 1 = [ "a" ]
+let%test _ = replicate [ "a" ] 4 = [ "a"; "a"; "a"; "a" ]
+let%test _ = replicate [ "a"; "a" ] 2 = [ "a"; "a"; "a"; "a" ]
+
+let%test _ =
+  replicate [ "a"; "b"; "c" ] 3 = [ "a"; "a"; "a"; "b"; "b"; "b"; "c"; "c"; "c" ]
+;;

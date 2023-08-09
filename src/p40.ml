@@ -10,4 +10,4 @@ let goldbach n =
   aux primes (List.rev primes)
 ;;
 
-assert (goldbach 28 = (5, 23))
+let%test _ = goldbach 28 = (5, 23)

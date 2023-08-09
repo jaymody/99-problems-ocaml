@@ -16,8 +16,10 @@ let permutation list =
   aux (List.length list) [] list
 ;;
 
-assert (permutation [] = []);;
-assert (permutation [ "a" ] = [ "a" ]);;
+let%test _ = permutation [] = []
+let%test _ = permutation [ "a" ] = [ "a" ]
 
-let () = Random.init 123 in
-assert (permutation [ "a"; "b"; "c"; "d" ] = [ "c"; "d"; "a"; "b" ])
+let%test _ =
+  Random.init 123;
+  permutation [ "a"; "b"; "c"; "d" ] = [ "c"; "d"; "a"; "b" ]
+;;

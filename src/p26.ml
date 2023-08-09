@@ -10,9 +10,13 @@ let combinations n list =
   aux n [] [] list
 ;;
 
-assert (combinations 0 [ "a"; "b"; "c"; "d" ] = [ [] ]);;
-assert (combinations 1 [ "a"; "b"; "c"; "d" ] = [ [ "d" ]; [ "c" ]; [ "b" ]; [ "a" ] ]);;
+let%test _ = combinations 0 [ "a"; "b"; "c"; "d" ] = [ [] ]
 
-assert (
+let%test _ =
+  combinations 1 [ "a"; "b"; "c"; "d" ] = [ [ "d" ]; [ "c" ]; [ "b" ]; [ "a" ] ]
+;;
+
+let%test _ =
   combinations 2 [ "a"; "b"; "c"; "d" ]
-  = [ [ "d"; "c" ]; [ "d"; "b" ]; [ "c"; "b" ]; [ "d"; "a" ]; [ "c"; "a" ]; [ "b"; "a" ] ])
+  = [ [ "d"; "c" ]; [ "d"; "b" ]; [ "c"; "b" ]; [ "d"; "a" ]; [ "c"; "a" ]; [ "b"; "a" ] ]
+;;

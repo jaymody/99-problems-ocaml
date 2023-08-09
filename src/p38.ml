@@ -5,5 +5,5 @@ let timeit f x =
   fx
 ;;
 
-timeit P34.phi 1209010;;
-timeit P37.phi_improved 1209010
+(* timeit P34.phi 1209010;; *)
+(* timeit P37.phi_improved 1209010;; *)

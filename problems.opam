@@ -9,5 +9,6 @@ bug-reports: "https://github.com/jaymody/99-ocaml-problems/issues"
 build: ["dune" "build" "-p" name "-j" jobs]
 depends: [
     "ocaml" {= "4.14.1"} # we fix the compiler to 4.14.1 so the Random tests with a given seed stay consistent
+    "ppx_inline_test"
     "dune"
 ]

@@ -29,10 +29,11 @@ let table vars expr =
   aux initial_varmap [] [] vars
 ;;
 
-assert (
+let%test _ =
   table [ "a"; "b" ] (And (Var "a", Or (Var "a", Var "b")))
   = [ [ "a", true; "b", true ], true
     ; [ "a", true; "b", false ], true
     ; [ "a", false; "b", true ], false
     ; [ "a", false; "b", false ], false
-    ])
+    ]
+;;

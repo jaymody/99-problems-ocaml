@@ -5,7 +5,7 @@ let length_sort list =
   |> List.map snd
 ;;
 
-assert (
+let%test _ =
   length_sort
     [ [ "a"; "b"; "c" ]
     ; [ "d"; "e" ]
@@ -22,7 +22,8 @@ assert (
     ; [ "a"; "b"; "c" ]
     ; [ "f"; "g"; "h" ]
     ; [ "i"; "j"; "k"; "l" ]
-    ])
+    ]
+;;
 
 module IntMap = Map.Make (Int)
 
@@ -41,7 +42,7 @@ let frequency_sort list =
   |> List.map snd
 ;;
 
-assert (
+let%test _ =
   frequency_sort
     [ [ "a"; "b"; "c" ]
     ; [ "d"; "e" ]
@@ -58,4 +59,5 @@ assert (
     ; [ "d"; "e" ]
     ; [ "d"; "e" ]
     ; [ "m"; "n" ]
-    ])
+    ]
+;;

@@ -16,12 +16,12 @@ let pack list =
   List.rev (aux [] list)
 ;;
 
-assert (pack [] = []);;
-assert (pack [ "a" ] = [ [ "a" ] ]);;
-assert (pack [ "a"; "a" ] = [ [ "a"; "a" ] ]);;
-assert (pack [ "a"; "b"; "c"; "a" ] = [ [ "a" ]; [ "b" ]; [ "c" ]; [ "a" ] ]);;
+let%test _ = pack [] = []
+let%test _ = pack [ "a" ] = [ [ "a" ] ]
+let%test _ = pack [ "a"; "a" ] = [ [ "a"; "a" ] ]
+let%test _ = pack [ "a"; "b"; "c"; "a" ] = [ [ "a" ]; [ "b" ]; [ "c" ]; [ "a" ] ]
 
-assert (
+let%test _ =
   pack [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "d"; "e"; "e"; "e"; "e" ]
   = [ [ "a"; "a"; "a"; "a" ]
     ; [ "b" ]
@@ -29,4 +29,5 @@ assert (
     ; [ "a"; "a" ]
     ; [ "d"; "d" ]
     ; [ "e"; "e"; "e"; "e" ]
-    ])
+    ]
+;;

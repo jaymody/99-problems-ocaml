@@ -3,5 +3,7 @@ let lotto_select n m =
   aux n []
 ;;
 
-let () = Random.init 100 in
-assert (lotto_select 10 5 = [ 4; 0; 5; 1; 2; 4; 3; 3; 1; 2 ])
+let%test _ =
+  Random.init 100;
+  lotto_select 10 5 = [ 4; 0; 5; 1; 2; 4; 3; 3; 1; 2 ]
+;;

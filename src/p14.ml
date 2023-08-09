@@ -6,10 +6,11 @@ let duplicate list =
   List.rev (aux [] list)
 ;;
 
-assert (duplicate [] = []);;
-assert (duplicate [ "a" ] = [ "a"; "a" ]);;
-assert (duplicate [ "a"; "a" ] = [ "a"; "a"; "a"; "a" ]);;
+let%test _ = duplicate [] = []
+let%test _ = duplicate [ "a" ] = [ "a"; "a" ]
+let%test _ = duplicate [ "a"; "a" ] = [ "a"; "a"; "a"; "a" ]
 
-assert (
+let%test _ =
   duplicate [ "a"; "b"; "c"; "c"; "d" ]
-  = [ "a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d" ])
+  = [ "a"; "a"; "b"; "b"; "c"; "c"; "c"; "c"; "d"; "d" ]
+;;

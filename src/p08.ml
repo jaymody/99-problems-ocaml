@@ -7,15 +7,16 @@ let compress list =
   List.rev (aux [] list)
 ;;
 
-assert (compress [] = []);;
-assert (compress [ 0 ] = [ 0 ]);;
-assert (compress [ 0; 0 ] = [ 0 ]);;
-assert (compress [ 0; 0; 1; 0; 0 ] = [ 0; 1; 0 ]);;
-assert (compress [ 0; 1; 0; 1; 0 ] = [ 0; 1; 0; 1; 0 ]);;
+let%test _ = compress [] = []
+let%test _ = compress [ 0 ] = [ 0 ]
+let%test _ = compress [ 0; 0 ] = [ 0 ]
+let%test _ = compress [ 0; 0; 1; 0; 0 ] = [ 0; 1; 0 ]
+let%test _ = compress [ 0; 1; 0; 1; 0 ] = [ 0; 1; 0; 1; 0 ]
 
-assert (
+let%test _ =
   compress [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]
-  = [ "a"; "b"; "c"; "a"; "d"; "e" ])
+  = [ "a"; "b"; "c"; "a"; "d"; "e" ]
+;;
 
 (* makes sure our implementation is efficient enough to run on a really long list *)
 let _ = compress (List.init 10000000 (fun x -> x))

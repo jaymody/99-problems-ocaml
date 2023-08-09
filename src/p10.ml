@@ -7,11 +7,12 @@ let encode list =
   List.rev (aux 1 [] list)
 ;;
 
-assert (encode [] = []);;
-assert (encode [ "c" ] = [ 1, "c" ]);;
-assert (encode [ "a"; "a"; "a"; "a" ] = [ 4, "a" ]);;
-assert (encode [ "a"; "a"; "b"; "b"; "a"; "a" ] = [ 2, "a"; 2, "b"; 2, "a" ]);;
+let%test _ = encode [] = []
+let%test _ = encode [ "c" ] = [ 1, "c" ]
+let%test _ = encode [ "a"; "a"; "a"; "a" ] = [ 4, "a" ]
+let%test _ = encode [ "a"; "a"; "b"; "b"; "a"; "a" ] = [ 2, "a"; 2, "b"; 2, "a" ]
 
-assert (
+let%test _ =
   encode [ "a"; "a"; "a"; "a"; "b"; "c"; "c"; "a"; "a"; "d"; "e"; "e"; "e"; "e" ]
-  = [ 4, "a"; 1, "b"; 2, "c"; 2, "a"; 1, "d"; 4, "e" ])
+  = [ 4, "a"; 1, "b"; 2, "c"; 2, "a"; 1, "d"; 4, "e" ]
+;;

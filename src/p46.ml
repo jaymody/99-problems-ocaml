@@ -21,11 +21,12 @@ let table2 a b expr =
   ]
 ;;
 
-assert (
+let%test _ =
   table2 "a" "b" (And (Var "a", Or (Var "a", Var "b")))
-  = [ true, true, true; true, false, true; false, true, false; false, false, false ])
+  = [ true, true, true; true, false, true; false, true, false; false, false, false ]
 ;;
 
-assert (
+let%test _ =
   table2 "a" "b" (Not (And (Var "a", Or (Var "a", Var "b"))))
-  = [ true, true, false; true, false, false; false, true, true; false, false, true ])
+  = [ true, true, false; true, false, false; false, true, true; false, false, true ]
+;;

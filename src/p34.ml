@@ -4,9 +4,9 @@ let phi m =
   Seq.fold_left ( + ) 0 (Seq.init (m - 1) (fun x -> if coprime (x + 1) m then 1 else 0))
 ;;
 
-assert (phi 10 = 4);;
+let%test _ = phi 10 = 4
 
-assert (
+let%test _ =
   List.init 49 (fun n -> n + 2, phi (n + 2))
   = [ 2, 1
     ; 3, 2
@@ -57,4 +57,5 @@ assert (
     ; 48, 16
     ; 49, 42
     ; 50, 20
-    ])
+    ]
+;;

@@ -42,15 +42,14 @@
    Which get's us back to the case when the first arg is less than the second.
 *)
 
-let rec gcd a b = if b = 0 then a else gcd b (a mod b);;
-
-assert (gcd 42 56 = 14);;
-assert (gcd 461952 116298 = 18);;
-assert (gcd 314080416 7966496 = 32);;
-assert (gcd 24826148 45296490 = 526);;
-assert (gcd 12 0 = 12);;
-assert (gcd 0 12 = 12);;
-assert (gcd 0 0 = 0);;
-assert (gcd 0 9 = 9);;
-assert (gcd 13 27 = 1);;
-assert (gcd 20536 7826 = 2)
+let rec gcd a b = if b = 0 then a else gcd b (a mod b)
+let%test _ = gcd 42 56 = 14
+let%test _ = gcd 461952 116298 = 18
+let%test _ = gcd 314080416 7966496 = 32
+let%test _ = gcd 24826148 45296490 = 526
+let%test _ = gcd 12 0 = 12
+let%test _ = gcd 0 12 = 12
+let%test _ = gcd 0 0 = 0
+let%test _ = gcd 0 9 = 9
+let%test _ = gcd 13 27 = 1
+let%test _ = gcd 20536 7826 = 2

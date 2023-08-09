@@ -25,5 +25,5 @@ let factors n =
   aux 2 n
 ;;
 
-assert (factors 315 = [ 3; 3; 5; 7 ]);;
-assert (factors 1481094 = [ 2; 3; 3; 107; 769 ])
+let%test _ = factors 315 = [ 3; 3; 5; 7 ]
+let%test _ = factors 1481094 = [ 2; 3; 3; 107; 769 ]

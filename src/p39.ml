@@ -17,7 +17,7 @@ let all_primes a b =
   is_prime_arr |> Array.to_list |> List.filter (fun n -> n <> 0 && n >= a)
 ;;
 
-assert (
+let%test _ =
   all_primes 2 97
   = [ 2
     ; 3
@@ -44,4 +44,5 @@ assert (
     ; 83
     ; 89
     ; 97
-    ])
+    ]
+;;

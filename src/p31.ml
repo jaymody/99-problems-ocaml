@@ -6,7 +6,7 @@ let is_prime n =
     not (aux 2))
 ;;
 
-assert (
+let%test _ =
   List.init 20 (fun n -> n, is_prime n)
   = [ 0, false
     ; 1, false
@@ -28,4 +28,5 @@ assert (
     ; 17, true
     ; 18, false
     ; 19, true
-    ])
+    ]
+;;

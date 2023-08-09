@@ -11,6 +11,7 @@ let flatten list =
   List.rev (aux [] list)
 ;;
 
-assert (
+let%test _ =
   flatten [ One "a"; Many [ One "b"; Many [ One "c"; One "d" ]; One "e" ] ]
-  = [ "a"; "b"; "c"; "d"; "e" ])
+  = [ "a"; "b"; "c"; "d"; "e" ]
+;;
