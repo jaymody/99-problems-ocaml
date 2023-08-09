@@ -1,9 +1,14 @@
 Solutions for [ocaml.org/problems](https://ocaml.org/problems).
 
-Requires `OCaml >= 4.14.0`.
-
+### Usage
+Dependencies:
 ```shell
-dune exec src/p01.exe # replace with problem number you want to run
+opam switch create . -w
+```
+
+Build project:
+```shell
+dune build
 ```
 
 Resources:

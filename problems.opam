@@ -1,0 +1,13 @@
+opam-version: "2.0"
+name: "problems"
+maintainer: "Jay Mody <jaykmody@gmail.com>"
+authors: "Jay Mody <jaykmody@gmail.com>"
+description: "Solutions to the 99 OCaml problem-set."
+license: "MIT"
+homepage: "https://github.com/jaymody/99-ocaml-problems"
+bug-reports: "https://github.com/jaymody/99-ocaml-problems/issues"
+build: ["dune" "build" "-p" name "-j" jobs]
+depends: [
+    "ocaml" {= "4.14.1"} # we fix the compiler to 4.14.1 so the Random tests with a given seed stay consistent
+    "dune"
+]
