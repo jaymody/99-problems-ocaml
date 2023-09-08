@@ -21,20 +21,35 @@ module HuffmanTree = struct
   let compare a b = compare (rank a) (rank b)
 end
 
+(*
+   Ideally, we'd use a priority queue with guarenteed log N insert and pop
+   but this will for now.
+*)
+let pop_min =
+  let cmp a b = HuffmanTree.compare a b in
+  let rec remove x = function
+    | [] -> invalid_arg "x not found in list"
+    | hd :: tl -> if cmp hd x = 0 then tl else hd :: remove x tl
+  in
+  function
+  | [] -> None, []
+  | hd :: tl as list ->
+    let min_val = List.fold_left (fun a b -> if cmp a b < 0 then a else b) hd tl in
+    let list = remove min_val list in
+    Some min_val, list
+;;
+
 let huffman fs =
-  let module PQ = Pq.MakePQ (HuffmanTree) in
   let rec aux pq =
-    let first, pq = PQ.pop pq in
-    let second, pq = PQ.pop pq in
+    let first, pq = pop_min pq in
+    let second, pq = pop_min pq in
     match first, second with
     | None, None -> []
     | Some first, None -> HuffmanTree.codes first
-    | Some first, Some second -> aux (PQ.push (HuffmanTree.combine first second) pq)
+    | Some first, Some second -> aux (HuffmanTree.combine first second :: pq)
     | None, Some _ -> invalid_arg "unreacheable"
   in
-  let pq =
-    List.fold_left (fun pq (s, n) -> PQ.push (HuffmanTree.Leaf (s, n)) pq) PQ.empty fs
-  in
+  let pq = List.fold_left (fun pq (s, n) -> HuffmanTree.Leaf (s, n) :: pq) [] fs in
   aux pq
 ;;
 
