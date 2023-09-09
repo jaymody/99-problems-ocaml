@@ -1,6 +1,4 @@
-type 'a tree =
-  | Empty
-  | Node of 'a * 'a tree * 'a tree
+open Tree
 
 let is_symmetric =
   let rec aux l r =

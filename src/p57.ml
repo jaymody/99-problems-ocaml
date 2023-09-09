@@ -1,4 +1,4 @@
-open P56
+open Tree
 
 let construct list =
   let rec add t x' =
@@ -9,5 +9,5 @@ let construct list =
   List.fold_left add Empty list
 ;;
 
-let%test _ = is_symmetric (construct [ 5; 3; 18; 1; 4; 12; 21 ])
-let%test _ = not (is_symmetric (construct [ 3; 2; 5; 7; 4 ]))
+let%test _ = P56.is_symmetric (construct [ 5; 3; 18; 1; 4; 12; 21 ])
+let%test _ = not (P56.is_symmetric (construct [ 3; 2; 5; 7; 4 ]))

@@ -1,6 +1,4 @@
-type 'a tree =
-  | Empty
-  | Node of 'a * 'a tree * 'a tree
+open Tree
 
 let cartesian_product a b = List.concat_map (fun x -> List.map (fun y -> x, y) b) a
 
