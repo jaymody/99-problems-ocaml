@@ -2,13 +2,20 @@ opam-version: "2.0"
 name: "problems"
 maintainer: "Jay Mody <jaykmody@gmail.com>"
 authors: "Jay Mody <jaykmody@gmail.com>"
-description: "Solutions to the 99 OCaml problem-set."
+synopsis: "Solutions to the 99 OCaml problem-set"
 license: "MIT"
 homepage: "https://github.com/jaymody/99-ocaml-problems"
 bug-reports: "https://github.com/jaymody/99-ocaml-problems/issues"
 build: ["dune" "build" "-p" name "-j" jobs]
 depends: [
     "ocaml" {= "4.14.1"} # we fix the compiler to 4.14.1 so the Random tests with a given seed stay consistent
-    "ppx_inline_test"
     "dune"
+    "ppx_inline_test" { with-test }
+    # Dev Dependencies
+    #
+    # I'm using with-test for dev dependencies as the with-dev-setup option
+    # is only available in opam 2.2.0, which is in alpha
+    "ocaml-lsp-server" { with-test }
+    "ocamlformat" { with-test }
+    "utop" { with-test }
 ]

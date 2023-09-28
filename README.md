@@ -3,7 +3,7 @@ Solutions for [ocaml.org/problems](https://ocaml.org/problems).
 ### Usage
 Dependencies:
 ```shell
-opam switch create . -w
+opam switch create . -w --with-test
 ```
 
 Build project:
